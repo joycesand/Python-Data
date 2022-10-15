@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "dash": "^3.23.0-alpha.1",
+    "dash-bootstrap-components": "^1.2.1",
+    "dash-extensions": "^0.0.67",
+    "install": "^0.13.0",
+    "pandas": "^0.0.3",
+    "plotly": "^1.0.6",
+    "wordcloud": "^1.2.2"
+  }
+}
