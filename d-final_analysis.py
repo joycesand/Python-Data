@@ -1,9 +1,8 @@
 import dash                              # pip install dash
-import dash_html_components as html
-import dash_core_components as dcc
 from dash.dependencies import Output, Input
+from dash_extensions.enrich import DashProxy, html, Output, Input, dcc     # pip install dash-extensions
+from dash_extensions import Lottie
 
-from dash_extensions import Lottie       # pip install dash-extensions
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
 import plotly.express as px              # pip install plotly
 import pandas as pd                      # pip install pandas
@@ -22,18 +21,18 @@ options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRat
 
 
 # Import App data from csv sheets **************************************
-df_cnt = pd.read_csv("https://raw.githubusercontent.com/Coding-with-Adam/Dash-by-Plotly/master/Analytic_Web_Apps/Linkedin_Analysis/Connections.csv")
+df_cnt = pd.read_csv("https://raw.githubusercontent.com/joycesand/Python-Data/main/Connections.csv")
 df_cnt["Connected On"] = pd.to_datetime(df_cnt["Connected On"])
 df_cnt["month"] = df_cnt["Connected On"].dt.month
 df_cnt['month'] = df_cnt['month'].apply(lambda x: calendar.month_abbr[x])
 
-df_invite = pd.read_csv("https://raw.githubusercontent.com/Coding-with-Adam/Dash-by-Plotly/master/Analytic_Web_Apps/Linkedin_Analysis/Invitations.csv")
+df_invite = pd.read_csv("https://raw.githubusercontent.com/joycesand/Python-Data/main/Invitations.csv")
 df_invite["Sent At"] = pd.to_datetime(df_invite["Sent At"])
 
-df_react = pd.read_csv("https://raw.githubusercontent.com/Coding-with-Adam/Dash-by-Plotly/master/Analytic_Web_Apps/Linkedin_Analysis/Reactions.csv")
+df_react = pd.read_csv("https://raw.githubusercontent.com/joycesand/Python-Data/main/Contacts.csv")
 df_react["Date"] = pd.to_datetime(df_react["Date"])
 
-df_msg = pd.read_csv("https://raw.githubusercontent.com/Coding-with-Adam/Dash-by-Plotly/master/Analytic_Web_Apps/Linkedin_Analysis/messages.csv")
+df_msg = pd.read_csv("https://raw.githubusercontent.com/joycesand/Python-Data/main/messages.csv")
 df_msg["DATE"] = pd.to_datetime(df_msg["DATE"])
 
 
@@ -59,12 +58,12 @@ app.layout = dbc.Container([
                 dbc.CardBody([
                     dcc.DatePickerSingle(
                         id='my-date-picker-start',
-                        date=date(2018, 1, 1),
+                        date=date(2012, 1, 1),
                         className='ml-5'
                     ),
                     dcc.DatePickerSingle(
                         id='my-date-picker-end',
-                        date=date(2021, 4, 4),
+                        date=date(2022, 4, 4),
                         className='mb-2 ml-2'
                     ),
                 ])
@@ -284,5 +283,4 @@ def update_pie(start_date, end_date):
 
 
 if __name__=='__main__':
-    app.run_server(debug=False, port=8004)
-plt.show()
+   app.run_server(debug=False, port=8004)
